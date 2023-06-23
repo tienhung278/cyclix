@@ -1,8 +1,9 @@
+using Cyclix.Entities.Common;
+
 namespace Cyclix.Entities;
 
-public class Bike
+public class Bike : EntityBase
 {
-    public long Id { get; set; }
     public long TypeId { get; set; }
     public long BrandId { get; set; }
     public long ServiceId { get; set; }

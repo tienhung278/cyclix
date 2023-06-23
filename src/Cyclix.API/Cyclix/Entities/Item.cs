@@ -1,8 +1,9 @@
+using Cyclix.Entities.Common;
+
 namespace Cyclix.Entities;
 
-public class Item
+public class Item : EntityBase
 {
-    public long Id { get; set; }
     public string Name { get; set; } = string.Empty;
     public string Category { get; set; } = string.Empty;
 }
