@@ -4,6 +4,6 @@ namespace Cyclix.Repository;
 
 public interface IBikeRepository : IRepositoryBase<Bike>
 {
-    Bike GetBike();
-    void CreateBike(Bike bike);
+    Task<IReadOnlyList<Bike>> GetBikes();
+    Task<Bike> GetBike(long id);
 }

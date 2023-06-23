@@ -12,22 +12,36 @@ public class BikeRepository : RepositoryBase<Bike>, IBikeRepository
         _context = context;
     }
 
-    public Bike GetBike()
+    public async Task<IReadOnlyList<Bike>> GetBikes()
     {
-        return FindAll()
+        return await _context.Set<Bike>()
+            .Include(b => b.Type)
+            .Include(b => b.Brand)
+            .Include(b => b.Service)
+            .Include(b => b.BikePackages)
+            .ThenInclude(b => b.Package)
+            .Include(b => b.BikeOptions)
+            .ThenInclude(bo => bo.Option)
+            .Include(b => b.BikeAnotherOptions)
+            .ThenInclude(bao => bao.AnotherOption)
             .Include(b => b.Customer)
-            .OrderByDescending(b => b.Id)
-            .FirstOrDefault();
+            .ToListAsync();
     }
 
-    public void CreateBike(Bike bike)
+    public async Task<Bike> GetBike(long id)
     {
-        Add(bike);
-        Save();
-    }
-    
-    private void Save()
-    {
-        _context.SaveChanges();
+        return await _context.Set<Bike>()
+            .Include(b => b.Type)
+            .Include(b => b.Brand)
+            .Include(b => b.Service)
+            .Include(b => b.BikePackages)
+            .ThenInclude(b => b.Package)
+            .Include(b => b.BikeOptions)
+            .ThenInclude(bo => bo.Option)
+            .Include(b => b.BikeAnotherOptions)
+            .ThenInclude(bao => bao.AnotherOption)
+            .Include(b => b.Customer)
+            .Where(b => b.Id == id)
+            .FirstOrDefaultAsync();
     }
 }
