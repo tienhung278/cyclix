@@ -1,0 +1,250 @@
+<div class="container-col-item-center">
+  <div class="title">Title</div>
+  <mat-vertical-stepper>
+    <mat-step>
+      <div class="container-col-content-start">
+        <div class="container-item">
+          <div class="container-item-row">
+            <div class="header">{{'header' | translate}}</div>
+          </div>
+          <div class="container-item-row">
+            <div class="container-item-col">
+              <label class="item-label">{{'label' | translate}}</label>
+              <dx-select-box
+                [dataSource]="types"
+                [valueExpr]="'id'"
+                [displayExpr]="'name'"
+                [value]="bike.typeId"
+                (valueChange)="bike.typeId = $event"
+              >
+              </dx-select-box>
+            </div>
+            <div class="container-item-col">
+              <label class="item-label">{{'label' | translate}}</label>
+              <dx-select-box
+                [dataSource]="brands"
+                [valueExpr]="'id'"
+                [displayExpr]="'name'"
+                [value]="bike.brandId"
+                (valueChange)="bike.brandId = $event"
+              >
+              </dx-select-box>
+            </div>
+          </div>
+          <div class="container-item-row item-space-around">
+            <dx-button
+              [text]="'Translate to English'"
+              [stylingMode]="'outlined'"
+              [type]="'success'"
+              (onClick)="switchLanguage('en')"
+            >
+            </dx-button>
+            <dx-button
+              [text]="'Translate to Vietnamese'"
+              [stylingMode]="'outlined'"
+              [type]="'success'"
+              (onClick)="switchLanguage('vn')"
+            >
+            </dx-button>
+          </div>
+          <div class="container-item-row">
+            <div class="item-middle">
+              <button matStepperNext>Next step<i class="fa fa-arrow-down btn-icon"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-step>
+    <mat-step>
+      <div class="container-col-content-start">
+        <div class="container-item">
+          <div class="container-item-row">
+            <div class="subtitle">subtitle</div>
+          </div>
+          <div class="container-item-row">
+            <div class="header">header</div>
+          </div>
+          <div class="container-item-row justify-item">
+            <div class="container-item-col" *ngFor="let service of services">
+              <div class="icon">Icon</div>
+              <label class="item-label item-label-center">Cyclix</label>
+              <input
+                type="radio"
+                name="radio"
+                [checked]="service.id == bike.serviceId"
+                (change)="bike.serviceId = service.id"
+              >
+            </div>
+          </div>
+          <div class="container-item-row justify-item">
+            <div class="container-item-col" *ngFor="let package of packages">
+              <dx-check-box #package
+                [text]="package.name"
+                [elementAttr]="{ class: 'text-color' }"
+                [value]="bike.packageId?.includes(package.id)"
+                (valueChange)="onPackageChanged($event, package)"
+              >
+              </dx-check-box>
+            </div>
+          </div>
+          <div class="container-item-row">
+            <div class="item-middle">
+              <button matStepperNext>Next step<i class="fa fa-arrow-down btn-icon"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-step>
+    <mat-step>
+      <div class="container-col-content-start">
+        <div class="container-item">
+          <div class="container-item-row">
+            <div class="subtitle">subtitle</div>
+          </div>
+          <div class="container-item-row">
+            <div class="header">header</div>
+          </div>
+          <div class="container-item-row justify-item item-wrap">
+            <div class="container-item-col item-full-width" *ngFor="let option of options">
+              <dx-check-box
+                [text]="option.name"
+                [elementAttr]="{ class: 'text-color' }"
+                [value]="bike.optionId?.includes(option.id)"
+                (valueChange)="onOptionChanged($event, option)"
+              >
+              </dx-check-box>
+            </div>
+          </div>
+          <div class="container-item-row">
+            <div class="subtitle">subtitle</div>
+          </div>
+          <div class="container-item-row justify-item item-wrap">
+            <div class="container-item-col item-full-width" *ngFor="let anotherOption of anotherOptions">
+              <dx-check-box
+                [text]="anotherOption.name"
+                [elementAttr]="{ class: 'text-color' }"
+                [value]="bike.anotherOptionId?.includes(anotherOption.id)"
+                (valueChange)="onAnotherOptionChanged($event, anotherOption)"
+              >
+              </dx-check-box>
+            </div>
+          </div>
+          <div class="container-item-row">
+            <div class="item-middle">
+              <button matStepperNext>Next step<i class="fa fa-arrow-down btn-icon"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-step>
+    <mat-step>
+      <div class="container-col-content-start">
+        <div class="container-item">
+          <div class="container-item-row">
+            <div class="subtitle">subtitle</div>
+          </div>
+          <div class="container-item-row">
+            <dx-text-area
+              [width]="'100%'"
+              [height]="'150px'"
+              [placeholder]="'Cyclix'"
+              [elementAttr]="{ class: 'custom-border' }"
+              [value]="bike.description ?? ''"
+              (valueChange)="bike.description = $event"
+            >
+            </dx-text-area>
+          </div>
+          <div class="container-item-row">
+            <dx-text-box
+              [elementAttr]="{ class: 'custom-border' }"
+              [value]="bike.note ?? ''"
+              (valueChange)="bike.note = $event"
+            >
+            </dx-text-box>
+            <div class="item-margin-left">Cyclix</div>
+          </div>
+          <div class="container-item-row">
+            <div class="item-middle">
+              <button matStepperNext>Next step<i class="fa fa-arrow-down btn-icon"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-step>
+    <mat-step>
+      <div class="container-col-content-start">
+        <div class="container-item">
+          <div class="container-item-row">
+            <div class="subtitle">subtitle</div>
+          </div>
+          <div class="container-item-row item-space-around">
+            <dx-text-box
+              [elementAttr]="{ class: 'custom-border' }"
+              [placeholder]="'First Name'"
+              [value]="bike.customer?.firstName ?? ''"
+              (valueChange)="customer.firstName = $event"
+            >
+            </dx-text-box>
+            <dx-text-box
+              [elementAttr]="{ class: 'custom-border' }"
+              [placeholder]="'Last Name'"
+              [value]="bike.customer?.lastName ?? ''"
+              (valueChange)="customer.lastName = $event"
+            >
+            </dx-text-box>
+          </div>
+          <div class="container-item-row item-space-around">
+            <dx-text-box
+              [elementAttr]="{ class: 'custom-border' }"
+              [placeholder]="'Street'"
+              [value]="bike.customer?.street ?? ''"
+              (valueChange)="customer.street = $event"
+            >
+            </dx-text-box>
+            <dx-text-box
+              [elementAttr]="{ class: 'custom-border' }"
+              [placeholder]="'House Number'"
+              [value]="bike.customer?.houseNumber ?? ''"
+              (valueChange)="customer.houseNumber = $event"
+            >
+            </dx-text-box>
+          </div>
+          <div class="container-item-row item-space-around">
+            <dx-text-box
+              [elementAttr]="{ class: 'custom-border' }"
+              [placeholder]="'Postcode'"
+              [value]="bike.customer?.postCode ?? ''"
+              (valueChange)="customer.postCode = $event"
+            >
+            </dx-text-box>
+            <dx-text-box
+              [elementAttr]="{ class: 'custom-border' }"
+              [placeholder]="'City'"
+              [value]="bike.customer?.city ?? ''"
+              (valueChange)="customer.city = $event"
+            >
+            </dx-text-box>
+          </div>
+          <div class="container-item-row item-space-around">
+            <dx-text-box
+              [elementAttr]="{ class: 'custom-border' }"
+              [placeholder]="'Email'"
+              [value]="bike.customer?.email ?? ''"
+              (valueChange)="customer.email = $event"
+            >
+            </dx-text-box>
+            <dx-text-box
+              [elementAttr]="{ class: 'custom-border' }"
+              [placeholder]="'Telephone'"
+              [value]="bike.customer?.telephone ?? ''"
+              (valueChange)="customer.telephone = $event"
+            >
+            </dx-text-box>
+          </div>
+        </div>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
+  <div *ngIf="isSaved">Saved</div>
+  <button (click)="submit()">Submit</button>
+</div>
