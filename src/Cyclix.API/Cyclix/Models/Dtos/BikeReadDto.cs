@@ -22,21 +22,9 @@ public class BikeReadDto
         TypeId = bike.TypeId;
         BrandId = bike.BrandId;
         ServiceId = bike.ServiceId;
-        PackageId = Array.ConvertAll(bike.PackageId.Split(','), s =>
-        {
-            s = string.IsNullOrEmpty(s) ? "0" : s;   
-            return long.Parse(s);
-        });
-        OptionId = Array.ConvertAll(bike.OptionId.Split(','), s =>
-        {
-            s = string.IsNullOrEmpty(s) ? "0" : s;   
-            return long.Parse(s);
-        });
-        AnotherOptionId = Array.ConvertAll(bike.AnotherOptionId.Split(','), s =>
-        {
-            s = string.IsNullOrEmpty(s) ? "0" : s;   
-            return long.Parse(s);
-        });
+        PackageId = bike.BikePackages.Select(bp => bp.PackageId).ToArray();
+        OptionId = bike.BikeOptions.Select(bo => bo.OptionId).ToArray();
+        AnotherOptionId = bike.BikeAnotherOptions.Select(bao => bao.AnotherOptionId).ToArray();
         Description = bike.Description;
         Note = bike.Note;
         Customer = new CustomerReadDto(bike.Customer);

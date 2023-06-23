@@ -4,6 +4,9 @@ namespace Cyclix.Services.Contracts;
 
 public interface IBikeServices
 {
-    BikeReadDto GetBike();
-    void CreateBike(BikeWriteDto bikeWriteDto);
+    Task<IReadOnlyList<BikeReadDto>> FindBikesAsync();
+    Task<BikeReadDto> FindBikeAsync(long id);
+    Task<long> CreateBikeAsync(BikeWriteDto bikeWriteDto);
+    Task UpdateBikeAsync(BikeWriteDto bikeWriteDto);
+    Task DeleteBikeAsync(long id);
 }

@@ -21,9 +21,9 @@ public class BikeWriteDto
             TypeId = TypeId,
             BrandId = BrandId,
             ServiceId = ServiceId,
-            PackageId = string.Join(',', PackageId),
-            OptionId = string.Join(',', OptionId),
-            AnotherOptionId = string.Join(',', AnotherOptionId),
+            BikePackages = PackageId.Select(p => new BikePackage { PackageId = p }).ToArray(),
+            BikeOptions = OptionId.Select(o => new BikeOption { OptionId = o }).ToArray(),
+            BikeAnotherOptions = AnotherOptionId.Select(ao => new BikeAnotherOption { AnotherOptionId = ao }).ToArray(),
             Description = Description,
             Note = Note,
             Customer = Customer.ToCustomer()
