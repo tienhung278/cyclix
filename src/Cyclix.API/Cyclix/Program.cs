@@ -14,10 +14,8 @@ var builder = WebApplication.CreateBuilder(args);
         var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
         options.UseSqlite(connectionString);
     });
-    builder.Services.AddScoped<IBikeRepository, BikeRepository>();
-    builder.Services.AddScoped<IBikeServices, BikeServices>();
-    builder.Services.AddScoped<IItemRepository, ItemRepository>();
-    builder.Services.AddScoped<IItemServices, ItemServices>();
+    builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
+    builder.Services.AddScoped<IServiceManager, ServiceManager>();
     builder.Services.AddCors(opt =>
     {
         opt.AddDefaultPolicy(builder =>
