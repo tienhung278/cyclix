@@ -1,4 +1,5 @@
 using Cyclix.Entities;
+using Cyclix.Exception;
 using Cyclix.Repository;
 using Cyclix.Services;
 using Cyclix.Services.Contracts;
@@ -38,6 +39,7 @@ var app = builder.Build();
     app.UseHttpsRedirection();
     app.UseCors();
     app.UseAuthorization();
+    app.UseMiddleware<GlobalExceptionMiddle>();
     app.MapControllers();
     app.Run();
 }
