@@ -1,0 +1,40 @@
+<div class="container-col-content-start">
+  <div class="container-item">
+    <div class="container-item-row">
+      <div class="subtitle">subtitle</div>
+    </div>
+    <div class="container-item-row">
+      <div class="header">header</div>
+    </div>
+    <div class="container-item-row justify-item item-wrap">
+      <div class="container-item-col item-full-width" *ngFor="let option of options$ | async">
+        <dx-check-box
+          [text]="option.name"
+          [elementAttr]="{ class: 'text-color' }"
+          [value]="optionIds?.includes(option.id)"
+          (valueChange)="optionValueChange(option.id)"
+        >
+        </dx-check-box>
+      </div>
+    </div>
+    <div class="container-item-row">
+      <div class="subtitle">subtitle</div>
+    </div>
+    <div class="container-item-row justify-item item-wrap">
+      <div class="container-item-col item-full-width" *ngFor="let anotherOption of anotherOptions$ | async">
+        <dx-check-box
+          [text]="anotherOption.name"
+          [elementAttr]="{ class: 'text-color' }"
+          [value]="anotherOptionIds?.includes(anotherOption.id)"
+          (valueChange)="anotherOptionValueChange(anotherOption.id)"
+        >
+        </dx-check-box>
+      </div>
+    </div>
+    <div class="container-item-row">
+      <div class="item-middle">
+        <button matStepperNext>Next step<i class="fa fa-arrow-down btn-icon"></i></button>
+      </div>
+    </div>
+  </div>
+</div>

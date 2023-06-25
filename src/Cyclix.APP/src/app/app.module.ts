@@ -10,6 +10,7 @@ import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {FormsModule} from "@angular/forms";
 import {Step1Component} from './components/step1/step1.component';
 import {Step2Component} from './components/step2/step2.component';
+import {Step3Component} from './components/step3/step3.component';
 
 function httpTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http)
@@ -20,6 +21,7 @@ function httpTranslateLoader(http: HttpClient) {
     AppComponent,
     Step1Component,
     Step2Component,
+    Step3Component,
   ],
   imports: [
     BrowserModule,

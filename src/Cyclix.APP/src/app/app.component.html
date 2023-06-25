@@ -19,46 +19,12 @@
       </app-step2>
     </mat-step>
     <mat-step>
-<!--      <div class="container-col-content-start">-->
-<!--        <div class="container-item">-->
-<!--          <div class="container-item-row">-->
-<!--            <div class="subtitle">subtitle</div>-->
-<!--          </div>-->
-<!--          <div class="container-item-row">-->
-<!--            <div class="header">header</div>-->
-<!--          </div>-->
-<!--          <div class="container-item-row justify-item item-wrap">-->
-<!--            <div class="container-item-col item-full-width" *ngFor="let option of options">-->
-<!--              <dx-check-box-->
-<!--                [text]="option.name"-->
-<!--                [elementAttr]="{ class: 'text-color' }"-->
-<!--                [value]="bike.optionId?.includes(option.id)"-->
-<!--                (valueChange)="onOptionChanged($event, option)"-->
-<!--              >-->
-<!--              </dx-check-box>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          <div class="container-item-row">-->
-<!--            <div class="subtitle">subtitle</div>-->
-<!--          </div>-->
-<!--          <div class="container-item-row justify-item item-wrap">-->
-<!--            <div class="container-item-col item-full-width" *ngFor="let anotherOption of anotherOptions">-->
-<!--              <dx-check-box-->
-<!--                [text]="anotherOption.name"-->
-<!--                [elementAttr]="{ class: 'text-color' }"-->
-<!--                [value]="bike.anotherOptionId?.includes(anotherOption.id)"-->
-<!--                (valueChange)="onAnotherOptionChanged($event, anotherOption)"-->
-<!--              >-->
-<!--              </dx-check-box>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          <div class="container-item-row">-->
-<!--            <div class="item-middle">-->
-<!--              <button matStepperNext>Next step<i class="fa fa-arrow-down btn-icon"></i></button>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
+      <app-step3
+        [optionIds]="[1,2]"
+        [anotherOptionIds]="[1,2]"
+        (onOptionValueChange)="requestWrite.optionIds = $event"
+        (onAnotherOptionValueChange)="requestWrite.anotherOptionIds = $event">
+      </app-step3>
     </mat-step>
     <mat-step>
 <!--      <div class="container-col-content-start">-->
