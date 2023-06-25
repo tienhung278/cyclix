@@ -47,7 +47,7 @@ public class RequestServices : IRequestServices
         var request = requestWriteDto.ToRequest();
         
         request.RequestPackages = new List<RequestPackage>();
-        foreach (var packageId in requestWriteDto.PackageId)
+        foreach (var packageId in requestWriteDto.PackageIds)
         {
             var package = await _packageRepository.FindByIdAsync(packageId);
             if (package == null)
@@ -58,7 +58,7 @@ public class RequestServices : IRequestServices
         }
         
         request.RequestOptions = new List<RequestOption>();
-        foreach (var optionId in requestWriteDto.OptionId)
+        foreach (var optionId in requestWriteDto.OptionIds)
         {
             var option = await _optionRepository.FindByIdAsync(optionId);
             if (option == null)
@@ -69,7 +69,7 @@ public class RequestServices : IRequestServices
         }
         
         request.RequestAnotherOptions = new List<RequestAnotherOption>();
-        foreach (var anotherOptionId in requestWriteDto.AnotherOptionId)
+        foreach (var anotherOptionId in requestWriteDto.AnotherOptionIds)
         {
             var anotherOption = await _anotherOptionRepository.FindByIdAsync(anotherOptionId);
             if (anotherOption == null)
@@ -117,7 +117,7 @@ public class RequestServices : IRequestServices
         request.Note = requestWriteDto.Note;
 
         request.RequestPackages = new List<RequestPackage>();
-        foreach (var packageId in requestWriteDto.PackageId)
+        foreach (var packageId in requestWriteDto.PackageIds)
         {
             var package = await _packageRepository.FindByIdAsync(packageId);
             if (package == null)
@@ -128,7 +128,7 @@ public class RequestServices : IRequestServices
         }
         
         request.RequestOptions = new List<RequestOption>();
-        foreach (var optionId in requestWriteDto.OptionId)
+        foreach (var optionId in requestWriteDto.OptionIds)
         {
             var option = await _optionRepository.FindByIdAsync(optionId);
             if (option == null)
@@ -139,7 +139,7 @@ public class RequestServices : IRequestServices
         }
         
         request.RequestAnotherOptions = new List<RequestAnotherOption>();
-        foreach (var anotherOptionId in requestWriteDto.AnotherOptionId)
+        foreach (var anotherOptionId in requestWriteDto.AnotherOptionIds)
         {
             var anotherOption = await _anotherOptionRepository.FindByIdAsync(anotherOptionId);
             if (anotherOption == null)
