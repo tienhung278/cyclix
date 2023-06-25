@@ -1,0 +1,71 @@
+<div class="container-col-content-start">
+  <div class="container-item">
+    <div class="container-item-row">
+      <div class="subtitle">subtitle</div>
+    </div>
+    <div class="container-item-row item-space-around">
+      <dx-text-box
+        [elementAttr]="{ class: 'custom-border' }"
+        [placeholder]="'First Name'"
+        [value]="customer?.firstName ?? ''"
+        (valueChange)="customer.firstName = $event; onCustomerValueChange.emit(customer)"
+      >
+      </dx-text-box>
+      <dx-text-box
+        [elementAttr]="{ class: 'custom-border' }"
+        [placeholder]="'Last Name'"
+        [value]="customer?.lastName ?? ''"
+        (valueChange)="customer.lastName = $event; onCustomerValueChange.emit(customer)"
+      >
+      </dx-text-box>
+    </div>
+    <div class="container-item-row item-space-around">
+      <dx-text-box
+        [elementAttr]="{ class: 'custom-border' }"
+        [placeholder]="'Street'"
+        [value]="customer?.street ?? ''"
+        (valueChange)="customer.street = $event; onCustomerValueChange.emit(customer)"
+      >
+      </dx-text-box>
+      <dx-text-box
+        [elementAttr]="{ class: 'custom-border' }"
+        [placeholder]="'House Number'"
+        [value]="customer?.houseNumber ?? ''"
+        (valueChange)="customer.houseNumber = $event; onCustomerValueChange.emit(customer)"
+      >
+      </dx-text-box>
+    </div>
+    <div class="container-item-row item-space-around">
+      <dx-text-box
+        [elementAttr]="{ class: 'custom-border' }"
+        [placeholder]="'Postcode'"
+        [value]="customer?.postCode ?? ''"
+        (valueChange)="customer.postCode = $event; onCustomerValueChange.emit(customer)"
+      >
+      </dx-text-box>
+      <dx-text-box
+        [elementAttr]="{ class: 'custom-border' }"
+        [placeholder]="'City'"
+        [value]="customer?.city ?? ''"
+        (valueChange)="customer.city = $event; onCustomerValueChange.emit(customer)"
+      >
+      </dx-text-box>
+    </div>
+    <div class="container-item-row item-space-around">
+      <dx-text-box
+        [elementAttr]="{ class: 'custom-border' }"
+        [placeholder]="'Email'"
+        [value]="customer?.email ?? ''"
+        (valueChange)="customer.email = $event; onCustomerValueChange.emit(customer)"
+      >
+      </dx-text-box>
+      <dx-text-box
+        [elementAttr]="{ class: 'custom-border' }"
+        [placeholder]="'Telephone'"
+        [value]="customer?.telephone ?? ''"
+        (valueChange)="customer.telephone = $event; onCustomerValueChange.emit(customer)"
+      >
+      </dx-text-box>
+    </div>
+  </div>
+</div>

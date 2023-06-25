@@ -35,77 +35,10 @@
       </app-step4>
     </mat-step>
     <mat-step>
-<!--      <div class="container-col-content-start">-->
-<!--        <div class="container-item">-->
-<!--          <div class="container-item-row">-->
-<!--            <div class="subtitle">subtitle</div>-->
-<!--          </div>-->
-<!--          <div class="container-item-row item-space-around">-->
-<!--            <dx-text-box-->
-<!--              [elementAttr]="{ class: 'custom-border' }"-->
-<!--              [placeholder]="'First Name'"-->
-<!--              [value]="bike.customer?.firstName ?? ''"-->
-<!--              (valueChange)="customer.firstName = $event"-->
-<!--            >-->
-<!--            </dx-text-box>-->
-<!--            <dx-text-box-->
-<!--              [elementAttr]="{ class: 'custom-border' }"-->
-<!--              [placeholder]="'Last Name'"-->
-<!--              [value]="bike.customer?.lastName ?? ''"-->
-<!--              (valueChange)="customer.lastName = $event"-->
-<!--            >-->
-<!--            </dx-text-box>-->
-<!--          </div>-->
-<!--          <div class="container-item-row item-space-around">-->
-<!--            <dx-text-box-->
-<!--              [elementAttr]="{ class: 'custom-border' }"-->
-<!--              [placeholder]="'Street'"-->
-<!--              [value]="bike.customer?.street ?? ''"-->
-<!--              (valueChange)="customer.street = $event"-->
-<!--            >-->
-<!--            </dx-text-box>-->
-<!--            <dx-text-box-->
-<!--              [elementAttr]="{ class: 'custom-border' }"-->
-<!--              [placeholder]="'House Number'"-->
-<!--              [value]="bike.customer?.houseNumber ?? ''"-->
-<!--              (valueChange)="customer.houseNumber = $event"-->
-<!--            >-->
-<!--            </dx-text-box>-->
-<!--          </div>-->
-<!--          <div class="container-item-row item-space-around">-->
-<!--            <dx-text-box-->
-<!--              [elementAttr]="{ class: 'custom-border' }"-->
-<!--              [placeholder]="'Postcode'"-->
-<!--              [value]="bike.customer?.postCode ?? ''"-->
-<!--              (valueChange)="customer.postCode = $event"-->
-<!--            >-->
-<!--            </dx-text-box>-->
-<!--            <dx-text-box-->
-<!--              [elementAttr]="{ class: 'custom-border' }"-->
-<!--              [placeholder]="'City'"-->
-<!--              [value]="bike.customer?.city ?? ''"-->
-<!--              (valueChange)="customer.city = $event"-->
-<!--            >-->
-<!--            </dx-text-box>-->
-<!--          </div>-->
-<!--          <div class="container-item-row item-space-around">-->
-<!--            <dx-text-box-->
-<!--              [elementAttr]="{ class: 'custom-border' }"-->
-<!--              [placeholder]="'Email'"-->
-<!--              [value]="bike.customer?.email ?? ''"-->
-<!--              (valueChange)="customer.email = $event"-->
-<!--            >-->
-<!--            </dx-text-box>-->
-<!--            <dx-text-box-->
-<!--              [elementAttr]="{ class: 'custom-border' }"-->
-<!--              [placeholder]="'Telephone'"-->
-<!--              [value]="bike.customer?.telephone ?? ''"-->
-<!--              (valueChange)="customer.telephone = $event"-->
-<!--            >-->
-<!--            </dx-text-box>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
+      <app-step5
+        [customer]="customer"
+        (onCustomerValueChange)="requestWrite.customer = $event">
+      </app-step5>
     </mat-step>
   </mat-vertical-stepper>
   <div *ngIf="isSaved">Saved</div>
