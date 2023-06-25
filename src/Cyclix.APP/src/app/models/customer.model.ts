@@ -7,5 +7,4 @@ export interface Customer {
   city?: string
   email?: string
   telephone?: string
-
 }

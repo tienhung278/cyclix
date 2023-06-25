@@ -1,12 +1,12 @@
 import {Customer} from "./customer.model";
 
-export interface Bike {
+export interface RequestWrite {
   typeId?: number
   brandId?: number
   serviceId?: number
-  packageId?: number[]
-  optionId?: number[]
-  anotherOptionId?: number[]
+  packageIds?: number[]
+  optionIds?: number[]
+  anotherOptionIds?: number[]
   description?: string
   note?: string
   customer?: Customer
