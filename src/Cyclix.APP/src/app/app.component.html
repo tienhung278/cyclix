@@ -27,38 +27,12 @@
       </app-step3>
     </mat-step>
     <mat-step>
-<!--      <div class="container-col-content-start">-->
-<!--        <div class="container-item">-->
-<!--          <div class="container-item-row">-->
-<!--            <div class="subtitle">subtitle</div>-->
-<!--          </div>-->
-<!--          <div class="container-item-row">-->
-<!--            <dx-text-area-->
-<!--              [width]="'100%'"-->
-<!--              [height]="'150px'"-->
-<!--              [placeholder]="'Cyclix'"-->
-<!--              [elementAttr]="{ class: 'custom-border' }"-->
-<!--              [value]="bike.description ?? ''"-->
-<!--              (valueChange)="bike.description = $event"-->
-<!--            >-->
-<!--            </dx-text-area>-->
-<!--          </div>-->
-<!--          <div class="container-item-row">-->
-<!--            <dx-text-box-->
-<!--              [elementAttr]="{ class: 'custom-border' }"-->
-<!--              [value]="bike.note ?? ''"-->
-<!--              (valueChange)="bike.note = $event"-->
-<!--            >-->
-<!--            </dx-text-box>-->
-<!--            <div class="item-margin-left">Cyclix</div>-->
-<!--          </div>-->
-<!--          <div class="container-item-row">-->
-<!--            <div class="item-middle">-->
-<!--              <button matStepperNext>Next step<i class="fa fa-arrow-down btn-icon"></i></button>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
+      <app-step4
+        [description]="'description'"
+        [note]="'note'"
+        (onDescriptionValueChange)="requestWrite.description = $event"
+        (onNoteValueChange)="requestWrite.note = $event">
+      </app-step4>
     </mat-step>
     <mat-step>
 <!--      <div class="container-col-content-start">-->
