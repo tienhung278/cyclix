@@ -22,29 +22,14 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscriptions.push(
-      this.requestService.getRequest().subscribe(
-        value => {
-          this.requestWrite = {
-            typeId: value.type?.id,
-            brandId: value.brand?.id,
-            serviceId: value.service?.id,
-            packageIds: value.packages?.map(p => p.id),
-            optionIds: value.options?.map(o => o.id),
-            anotherOptionIds: value.anotherOptions?.map(ao => ao.id),
-            description: value.description,
-            note: value.note,
-            customer: value.customer
-          };
-        }
-      )
-    );
+
   }
 
   submit(): void {
     this.subscriptions.push(
       this.requestService.createRequest(this.requestWrite).subscribe(
         value => {
+          console.log(this.requestWrite);
           this.isSaved = true;
           this.reset();
         }
