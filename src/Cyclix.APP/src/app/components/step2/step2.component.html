@@ -1,0 +1,38 @@
+<div class="container-col-content-start">
+  <div class="container-item">
+    <div class="container-item-row">
+      <div class="subtitle">subtitle</div>
+    </div>
+    <div class="container-item-row">
+      <div class="header">header</div>
+    </div>
+    <div class="container-item-row justify-item">
+      <div class="container-item-col" *ngFor="let service of services$ | async">
+        <div class="icon">Icon</div>
+        <label class="item-label item-label-center">Cyclix</label>
+        <input
+          type="radio"
+          name="radio"
+          [checked]="service.id == serviceId"
+          (change)="serviceValueChange(service.id)"
+        >
+      </div>
+    </div>
+    <div class="container-item-row justify-item">
+      <div class="container-item-col" *ngFor="let package of packages$ | async">
+        <dx-check-box #package
+                      [text]="package.name"
+                      [elementAttr]="{ class: 'text-color' }"
+                      [value]="packageIds?.includes(package.id)"
+                      (valueChange)="packageValueChange(package.id)"
+        >
+        </dx-check-box>
+      </div>
+    </div>
+    <div class="container-item-row">
+      <div class="item-middle">
+        <button matStepperNext>Next step<i class="fa fa-arrow-down btn-icon"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
