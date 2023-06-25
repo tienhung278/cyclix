@@ -25,6 +25,8 @@ export class Step2Component implements OnInit {
   services$: Observable<Service[]> = new Observable<Service[]>();
   packages$: Observable<Package[]> = new Observable<Package[]>();
 
+  selectedPackageIds: number[] = [];
+
   constructor(private serviceService: ServiceService,
               private packageService: PackageService) {
   }
@@ -39,13 +41,13 @@ export class Step2Component implements OnInit {
   }
 
   packageValueChange(packageSelectedId: number): void {
-    const index = this.packageIds?.indexOf(packageSelectedId)!;
+    const index = this.selectedPackageIds?.indexOf(packageSelectedId)!;
     if (packageSelectedId && index != -1) {
-      this.packageIds?.splice(index, 1);
+      this.selectedPackageIds?.splice(index, 1);
     } else {
-      this.packageIds?.push(packageSelectedId);
+      this.selectedPackageIds?.push(packageSelectedId);
+      this.selectedPackageIds.sort();
     }
-
-    this.onPackageValueChange.emit(this.packageIds);
+    this.onPackageValueChange.emit(this.selectedPackageIds);
   }
 }
