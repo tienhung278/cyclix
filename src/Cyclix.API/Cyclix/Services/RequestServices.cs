@@ -41,6 +41,12 @@ public class RequestServices : IRequestServices
         var request = await _requestRepository.GetRequest(id);
         return new RequestReadDto(request);
     }
+    
+    public async Task<RequestReadDto> FindLatestRequestAsync()
+    {
+        var request = await _requestRepository.GetLatestRequest();
+        return new RequestReadDto(request);
+    }
 
     public async Task<long> CreateRequestAsync(RequestWriteDto requestWriteDto)
     {

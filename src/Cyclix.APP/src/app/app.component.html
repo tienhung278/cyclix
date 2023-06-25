@@ -3,16 +3,16 @@
   <mat-vertical-stepper>
     <mat-step>
       <app-step1
-        [typeId]="1"
-        [brandId]="1"
+        [typeId]="requestWrite.typeId!"
+        [brandId]="requestWrite.brandId!"
         (onTypeValueChange)="requestWrite.typeId = $event"
         (onBrandValueChange)="requestWrite.brandId = $event">
       </app-step1>
     </mat-step>
     <mat-step>
       <app-step2
-        [serviceId]="2"
-        [packageIds]="[2]"
+        [serviceId]="requestWrite.serviceId!"
+        [packageIds]="requestWrite.packageIds!"
         (onServiceValueChange)="requestWrite.serviceId = $event"
         (onPackageValueChange)="requestWrite.packageIds = $event"
       >
@@ -20,27 +20,30 @@
     </mat-step>
     <mat-step>
       <app-step3
-        [optionIds]="[1,2]"
-        [anotherOptionIds]="[1,2]"
+        [optionIds]="requestWrite.optionIds!"
+        [anotherOptionIds]="requestWrite.anotherOptionIds!"
         (onOptionValueChange)="requestWrite.optionIds = $event"
         (onAnotherOptionValueChange)="requestWrite.anotherOptionIds = $event">
       </app-step3>
     </mat-step>
     <mat-step>
       <app-step4
-        [description]="'description'"
-        [note]="'note'"
+        [description]="requestWrite.description!"
+        [note]="requestWrite.note!"
         (onDescriptionValueChange)="requestWrite.description = $event"
         (onNoteValueChange)="requestWrite.note = $event">
       </app-step4>
     </mat-step>
     <mat-step>
       <app-step5
-        [customer]="customer"
+        [customer]="requestWrite.customer!"
         (onCustomerValueChange)="requestWrite.customer = $event">
       </app-step5>
     </mat-step>
   </mat-vertical-stepper>
-  <div *ngIf="isSaved">Saved</div>
-  <button (click)="submit()">Submit</button>
+  <div class="container-item-row item-space-around">
+    <div *ngIf="isSaved">Saved</div>
+    <button (click)="submit()">Submit</button>
+    <button (click)="load()">Load latest</button>
+  </div>
 </div>

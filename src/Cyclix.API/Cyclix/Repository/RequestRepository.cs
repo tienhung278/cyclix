@@ -44,4 +44,22 @@ public class RequestRepository : RepositoryBase<Request>, IRequestRepository
             .Where(b => b.Id == id)
             .FirstOrDefaultAsync();
     }
+    
+    public async Task<Request> GetLatestRequest()
+    {
+        return await _context.Set<Request>()
+            .Include(b => b.Type)
+            .Include(b => b.Brand)
+            .Include(b => b.Service)
+            .Include(b => b.RequestPackages)
+            .ThenInclude(b => b.Package)
+            .Include(b => b.RequestOptions)
+            .ThenInclude(bo => bo.Option)
+            .Include(b => b.RequestAnotherOptions)
+            .ThenInclude(bao => bao.AnotherOption)
+            .Include(b => b.Customer)
+            .OrderByDescending(r => r.Id)
+            .Take(1)
+            .FirstOrDefaultAsync();
+    }
 }

@@ -35,6 +35,13 @@ public class RequestsController : Controller
             return NotFound(new { message = $"{id} was not found" });
         }
     }
+    
+    [HttpGet("latest")]
+    public async Task<IActionResult> GetLatest()
+    {
+        var request = await _requestServices.FindLatestRequestAsync();
+        return Ok(request);
+    }
 
     [HttpPost]
     public async Task<IActionResult> Post(RequestWriteDto requestWriteDto)
