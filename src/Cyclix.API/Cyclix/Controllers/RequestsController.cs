@@ -6,20 +6,20 @@ namespace Cyclix.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class BikesController : Controller
+public class RequestsController : Controller
 {
-    private readonly IBikeServices _bikeServices;
+    private readonly IRequestServices _requestServices;
 
-    public BikesController(IServiceManager serviceManager)
+    public RequestsController(IServiceManager serviceManager)
     {
-        _bikeServices = serviceManager.BikeServices;
+        _requestServices = serviceManager.RequestServices;
     }
 
     [HttpGet]
     public async Task<IActionResult> Get()
     {
-        var bikes = await _bikeServices.FindBikesAsync();
-        return Ok(bikes);
+        var requests = await _requestServices.FindRequestsAsync();
+        return Ok(requests);
     }
     
     [HttpGet("{id}")]
@@ -27,8 +27,8 @@ public class BikesController : Controller
     {
         try
         {
-            var bike = await _bikeServices.FindBikeAsync(id);
-            return Ok(bike);
+            var request = await _requestServices.FindRequestAsync(id);
+            return Ok(request);
         }
         catch (NullReferenceException exception)
         {
@@ -37,23 +37,23 @@ public class BikesController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post(BikeWriteDto bikeWriteDto)
+    public async Task<IActionResult> Post(RequestWriteDto requestWriteDto)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest();
         }
         
-        var id = await _bikeServices.CreateBikeAsync(bikeWriteDto);
-        return Created($"/bikes/{id}", null);
+        var id = await _requestServices.CreateRequestAsync(requestWriteDto);
+        return Created($"/requests/{id}", null);
     }
     
     [HttpPut("{id}")] 
-    public async Task<IActionResult> Put(long id, [FromBody] BikeWriteDto bikeWriteDto)
+    public async Task<IActionResult> Put(long id, [FromBody] RequestWriteDto requestWriteDto)
     {
         try
         {
-            await _bikeServices.UpdateBikeAsync(id, bikeWriteDto);
+            await _requestServices.UpdateRequestAsync(id, requestWriteDto);
             return NoContent();
         }
         catch (NullReferenceException exception)
@@ -67,7 +67,7 @@ public class BikesController : Controller
     {
         try
         {
-            await _bikeServices.DeleteBikeAsync(id);
+            await _requestServices.DeleteRequestAsync(id);
             return NoContent();
         }
         catch (NullReferenceException exception)

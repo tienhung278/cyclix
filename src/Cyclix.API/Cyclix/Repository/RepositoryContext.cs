@@ -11,11 +11,11 @@ public class RepositoryContext : DbContext
     public DbSet<Package> Packages { get; set; }
     public DbSet<Option> Options { get; set; }
     public DbSet<AnotherOption> AnotherOptions { get; set; }
-    public DbSet<Bike> Bikes { get; set; }
+    public DbSet<Request> Requests { get; set; }
     public DbSet<Customer> Customers { get; set; }
-    public DbSet<BikePackage> BikePackages { get; set; }
-    public DbSet<BikeOption> BikeOptions { get; set; }
-    public DbSet<BikeAnotherOption> BikeAnotherOptions { get; set; }
+    public DbSet<RequestPackage> RequestPackages { get; set; }
+    public DbSet<RequestOption> RequestOptions { get; set; }
+    public DbSet<RequestAnotherOption> RequestAnotherOptions { get; set; }
 
     public RepositoryContext(DbContextOptions<RepositoryContext> options) : base(options) 
     {
@@ -67,19 +67,19 @@ public class RepositoryContext : DbContext
             new AnotherOption { Id = 2, Name = "another option 2" }
         );
         
-        modelBuilder.Entity<BikePackage>().HasData
+        modelBuilder.Entity<RequestPackage>().HasData
         (
-            new BikePackage { BikeId = 1, PackageId = 1 }
+            new RequestPackage { RequestId = 1, PackageId = 1 }
         );
         
-        modelBuilder.Entity<BikeOption>().HasData
+        modelBuilder.Entity<RequestOption>().HasData
         (
-            new BikeOption { BikeId = 1, OptionId = 1 }
+            new RequestOption { RequestId = 1, OptionId = 1 }
         );
         
-        modelBuilder.Entity<BikeAnotherOption>().HasData
+        modelBuilder.Entity<RequestAnotherOption>().HasData
         (
-            new BikeAnotherOption { BikeId = 1, AnotherOptionId = 1 }
+            new RequestAnotherOption { RequestId = 1, AnotherOptionId = 1 }
         );
         
         var customer = new Customer
@@ -96,11 +96,11 @@ public class RepositoryContext : DbContext
         };
         modelBuilder.Entity<Customer>().HasData(customer);
         
-        modelBuilder.Entity<BikePackage>().HasKey(bp => new { bp.BikeId, bp.PackageId });
-        modelBuilder.Entity<BikeOption>().HasKey(bo => new { bo.BikeId, bo.OptionId });
-        modelBuilder.Entity<BikeAnotherOption>().HasKey(bao => new { bao.BikeId, bao.AnotherOptionId });
+        modelBuilder.Entity<RequestPackage>().HasKey(bp => new { bp.RequestId, bp.PackageId });
+        modelBuilder.Entity<RequestOption>().HasKey(bo => new { bo.RequestId, bo.OptionId });
+        modelBuilder.Entity<RequestAnotherOption>().HasKey(bao => new { bao.RequestId, bao.AnotherOptionId });
 
-        var bike = new Bike
+        var request = new Request
         {
             Id = 1,
             BrandId = 1,
@@ -110,6 +110,6 @@ public class RepositoryContext : DbContext
             Description = "Description",
             Note = "Note"
         };
-        modelBuilder.Entity<Bike>().HasData(bike);
+        modelBuilder.Entity<Request>().HasData(request);
     }
 }

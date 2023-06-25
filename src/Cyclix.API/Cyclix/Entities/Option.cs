@@ -5,5 +5,5 @@ namespace Cyclix.Entities;
 public class Option : EntityBase
 {
     public string Name { get; set; }
-    public ICollection<BikeOption> BikeOptions { get; set; }
+    public ICollection<RequestOption> RequestOptions { get; set; }
 }

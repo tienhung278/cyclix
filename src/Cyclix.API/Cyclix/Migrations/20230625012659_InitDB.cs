@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -111,7 +111,7 @@ namespace Cyclix.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Bikes",
+                name: "Requests",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "INTEGER", nullable: false)
@@ -125,27 +125,27 @@ namespace Cyclix.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Bikes", x => x.Id);
+                    table.PrimaryKey("PK_Requests", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Bikes_Brands_BrandId",
+                        name: "FK_Requests_Brands_BrandId",
                         column: x => x.BrandId,
                         principalTable: "Brands",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Bikes_Customers_CustomerId",
+                        name: "FK_Requests_Customers_CustomerId",
                         column: x => x.CustomerId,
                         principalTable: "Customers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Bikes_Services_ServiceId",
+                        name: "FK_Requests_Services_ServiceId",
                         column: x => x.ServiceId,
                         principalTable: "Services",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Bikes_Types_TypeId",
+                        name: "FK_Requests_Types_TypeId",
                         column: x => x.TypeId,
                         principalTable: "Types",
                         principalColumn: "Id",
@@ -153,73 +153,73 @@ namespace Cyclix.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "BikeAnotherOptions",
+                name: "RequestAnotherOptions",
                 columns: table => new
                 {
-                    BikeId = table.Column<long>(type: "INTEGER", nullable: false),
+                    RequestId = table.Column<long>(type: "INTEGER", nullable: false),
                     AnotherOptionId = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BikeAnotherOptions", x => new { x.BikeId, x.AnotherOptionId });
+                    table.PrimaryKey("PK_RequestAnotherOptions", x => new { x.RequestId, x.AnotherOptionId });
                     table.ForeignKey(
-                        name: "FK_BikeAnotherOptions_AnotherOptions_AnotherOptionId",
+                        name: "FK_RequestAnotherOptions_AnotherOptions_AnotherOptionId",
                         column: x => x.AnotherOptionId,
                         principalTable: "AnotherOptions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_BikeAnotherOptions_Bikes_BikeId",
-                        column: x => x.BikeId,
-                        principalTable: "Bikes",
+                        name: "FK_RequestAnotherOptions_Requests_RequestId",
+                        column: x => x.RequestId,
+                        principalTable: "Requests",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "BikeOptions",
+                name: "RequestOptions",
                 columns: table => new
                 {
-                    BikeId = table.Column<long>(type: "INTEGER", nullable: false),
+                    RequestId = table.Column<long>(type: "INTEGER", nullable: false),
                     OptionId = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BikeOptions", x => new { x.BikeId, x.OptionId });
+                    table.PrimaryKey("PK_RequestOptions", x => new { x.RequestId, x.OptionId });
                     table.ForeignKey(
-                        name: "FK_BikeOptions_Bikes_BikeId",
-                        column: x => x.BikeId,
-                        principalTable: "Bikes",
+                        name: "FK_RequestOptions_Options_OptionId",
+                        column: x => x.OptionId,
+                        principalTable: "Options",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_BikeOptions_Options_OptionId",
-                        column: x => x.OptionId,
-                        principalTable: "Options",
+                        name: "FK_RequestOptions_Requests_RequestId",
+                        column: x => x.RequestId,
+                        principalTable: "Requests",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "BikePackages",
+                name: "RequestPackages",
                 columns: table => new
                 {
-                    BikeId = table.Column<long>(type: "INTEGER", nullable: false),
+                    RequestId = table.Column<long>(type: "INTEGER", nullable: false),
                     PackageId = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BikePackages", x => new { x.BikeId, x.PackageId });
+                    table.PrimaryKey("PK_RequestPackages", x => new { x.RequestId, x.PackageId });
                     table.ForeignKey(
-                        name: "FK_BikePackages_Bikes_BikeId",
-                        column: x => x.BikeId,
-                        principalTable: "Bikes",
+                        name: "FK_RequestPackages_Packages_PackageId",
+                        column: x => x.PackageId,
+                        principalTable: "Packages",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_BikePackages_Packages_PackageId",
-                        column: x => x.PackageId,
-                        principalTable: "Packages",
+                        name: "FK_RequestPackages_Requests_RequestId",
+                        column: x => x.RequestId,
+                        principalTable: "Requests",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -290,39 +290,59 @@ namespace Cyclix.Migrations
                     { 3L, "type 3" }
                 });
 
+            migrationBuilder.InsertData(
+                table: "Requests",
+                columns: new[] { "Id", "BrandId", "CustomerId", "Description", "Note", "ServiceId", "TypeId" },
+                values: new object[] { 1L, 1L, 1L, "Description", "Note", 1L, 1L });
+
+            migrationBuilder.InsertData(
+                table: "RequestAnotherOptions",
+                columns: new[] { "AnotherOptionId", "RequestId" },
+                values: new object[] { 1L, 1L });
+
+            migrationBuilder.InsertData(
+                table: "RequestOptions",
+                columns: new[] { "OptionId", "RequestId" },
+                values: new object[] { 1L, 1L });
+
+            migrationBuilder.InsertData(
+                table: "RequestPackages",
+                columns: new[] { "PackageId", "RequestId" },
+                values: new object[] { 1L, 1L });
+
             migrationBuilder.CreateIndex(
-                name: "IX_BikeAnotherOptions_AnotherOptionId",
-                table: "BikeAnotherOptions",
+                name: "IX_RequestAnotherOptions_AnotherOptionId",
+                table: "RequestAnotherOptions",
                 column: "AnotherOptionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BikeOptions_OptionId",
-                table: "BikeOptions",
+                name: "IX_RequestOptions_OptionId",
+                table: "RequestOptions",
                 column: "OptionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BikePackages_PackageId",
-                table: "BikePackages",
+                name: "IX_RequestPackages_PackageId",
+                table: "RequestPackages",
                 column: "PackageId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Bikes_BrandId",
-                table: "Bikes",
+                name: "IX_Requests_BrandId",
+                table: "Requests",
                 column: "BrandId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Bikes_CustomerId",
-                table: "Bikes",
+                name: "IX_Requests_CustomerId",
+                table: "Requests",
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Bikes_ServiceId",
-                table: "Bikes",
+                name: "IX_Requests_ServiceId",
+                table: "Requests",
                 column: "ServiceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Bikes_TypeId",
-                table: "Bikes",
+                name: "IX_Requests_TypeId",
+                table: "Requests",
                 column: "TypeId");
         }
 
@@ -330,13 +350,13 @@ namespace Cyclix.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "BikeAnotherOptions");
+                name: "RequestAnotherOptions");
 
             migrationBuilder.DropTable(
-                name: "BikeOptions");
+                name: "RequestOptions");
 
             migrationBuilder.DropTable(
-                name: "BikePackages");
+                name: "RequestPackages");
 
             migrationBuilder.DropTable(
                 name: "AnotherOptions");
@@ -345,10 +365,10 @@ namespace Cyclix.Migrations
                 name: "Options");
 
             migrationBuilder.DropTable(
-                name: "Bikes");
+                name: "Packages");
 
             migrationBuilder.DropTable(
-                name: "Packages");
+                name: "Requests");
 
             migrationBuilder.DropTable(
                 name: "Brands");

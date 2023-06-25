@@ -1,9 +1,9 @@
 namespace Cyclix.Entities;
 
-public class BikeAnotherOption
+public class RequestAnotherOption
 {
-    public long BikeId { get; set; }
-    public Bike Bike { get; set; }
+    public long RequestId { get; set; }
+    public Request Request { get; set; }
     public long AnotherOptionId { get; set; }
     public AnotherOption AnotherOption { get; set; }
 }

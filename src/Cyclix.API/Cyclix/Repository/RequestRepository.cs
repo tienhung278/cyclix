@@ -3,42 +3,42 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Cyclix.Repository;
 
-public class BikeRepository : RepositoryBase<Bike>, IBikeRepository
+public class RequestRepository : RepositoryBase<Request>, IRequestRepository
 {
     private readonly RepositoryContext _context;
 
-    public BikeRepository(RepositoryContext context) : base(context)
+    public RequestRepository(RepositoryContext context) : base(context)
     {
         _context = context;
     }
 
-    public async Task<IReadOnlyList<Bike>> GetBikes()
+    public async Task<IReadOnlyList<Request>> GetRequests()
     {
-        return await _context.Set<Bike>()
+        return await _context.Set<Request>()
             .Include(b => b.Type)
             .Include(b => b.Brand)
             .Include(b => b.Service)
-            .Include(b => b.BikePackages)
+            .Include(b => b.RequestPackages)
             .ThenInclude(b => b.Package)
-            .Include(b => b.BikeOptions)
+            .Include(b => b.RequestOptions)
             .ThenInclude(bo => bo.Option)
-            .Include(b => b.BikeAnotherOptions)
+            .Include(b => b.RequestAnotherOptions)
             .ThenInclude(bao => bao.AnotherOption)
             .Include(b => b.Customer)
             .ToListAsync();
     }
 
-    public async Task<Bike> GetBike(long id)
+    public async Task<Request> GetRequest(long id)
     {
-        return await _context.Set<Bike>()
+        return await _context.Set<Request>()
             .Include(b => b.Type)
             .Include(b => b.Brand)
             .Include(b => b.Service)
-            .Include(b => b.BikePackages)
+            .Include(b => b.RequestPackages)
             .ThenInclude(b => b.Package)
-            .Include(b => b.BikeOptions)
+            .Include(b => b.RequestOptions)
             .ThenInclude(bo => bo.Option)
-            .Include(b => b.BikeAnotherOptions)
+            .Include(b => b.RequestAnotherOptions)
             .ThenInclude(bao => bao.AnotherOption)
             .Include(b => b.Customer)
             .Where(b => b.Id == id)

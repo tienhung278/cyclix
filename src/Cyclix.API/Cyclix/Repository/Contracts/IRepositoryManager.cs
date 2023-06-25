@@ -8,10 +8,10 @@ public interface IRepositoryManager
     public IPackageRepository PackageRepository { get; }
     public IOptionRepository OptionRepository { get; }
     public IAnotherOptionRepository AnotherOptionRepository { get; }
-    public IBikePackageRepository BikePackageRepository { get; }
-    public IBikeOptionRepository BikeOptionRepository { get; }
-    public IBikeAnotherOptionRepository BikeAnotherOptionRepository { get; }
+    public IRequestPackageRepository RequestPackageRepository { get; }
+    public IRequestOptionRepository RequestOptionRepository { get; }
+    public IRequestAnotherOptionRepository RequestAnotherOptionRepository { get; }
     public ICustomerRepository CustomerRepository { get; }
-    public IBikeRepository BikeRepository { get; }
+    public IRequestRepository RequestRepository { get; }
     public IUnitOfWork UnitOfWork { get; }
 }

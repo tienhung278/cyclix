@@ -12,7 +12,7 @@ public class ServiceManager : IServiceManager
     private readonly Lazy<IPackageServices> _lazyPackageServices;
     private readonly Lazy<IOptionServices> _lazyOptionServices;
     private readonly Lazy<IAnotherOptionServices> _lazyAnotherOptionServices;
-    private readonly Lazy<IBikeServices> _lazyBikeServices;
+    private readonly Lazy<IRequestServices> _lazyRequestServices;
 
     public ITypeServices TypeServices => _lazyTypeServices.Value;
     public IBrandServices BrandServices => _lazyBrandServices.Value;
@@ -20,7 +20,7 @@ public class ServiceManager : IServiceManager
     public IPackageServices PackageServices => _lazyPackageServices.Value;
     public IOptionServices OptionServices => _lazyOptionServices.Value;
     public IAnotherOptionServices AnotherOptionServices => _lazyAnotherOptionServices.Value;
-    public IBikeServices BikeServices => _lazyBikeServices.Value;
+    public IRequestServices RequestServices => _lazyRequestServices.Value;
 
     public ServiceManager(IRepositoryManager repositoryManager)
     {
@@ -31,6 +31,6 @@ public class ServiceManager : IServiceManager
         _lazyPackageServices = new Lazy<IPackageServices>(() => new PackageServices(_repositoryManager));
         _lazyOptionServices = new Lazy<IOptionServices>(() => new OptionServices(_repositoryManager));
         _lazyAnotherOptionServices = new Lazy<IAnotherOptionServices>(() => new AnotherOptionServices(_repositoryManager));
-        _lazyBikeServices = new Lazy<IBikeServices>(() => new BikeServices(_repositoryManager));
+        _lazyRequestServices = new Lazy<IRequestServices>(() => new RequestServices(_repositoryManager));
     }
 }

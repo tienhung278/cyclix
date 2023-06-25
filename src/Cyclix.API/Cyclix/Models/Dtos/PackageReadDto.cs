@@ -13,7 +13,7 @@ public class PackageReadDto
         Name = package.Name;
     }
     
-    public PackageReadDto(BikePackage package)
+    public PackageReadDto(RequestPackage package)
     {
         Id = package.Package.Id;
         Name = package.Package.Name;

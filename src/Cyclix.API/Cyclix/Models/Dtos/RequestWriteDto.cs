@@ -2,7 +2,7 @@ using Cyclix.Entities;
 
 namespace Cyclix.Models.Dtos;
 
-public class BikeWriteDto
+public class RequestWriteDto
 {
     public long TypeId { get; set; }
     public long BrandId { get; set; }
@@ -14,16 +14,16 @@ public class BikeWriteDto
     public string Note { get; set; }
     public CustomerWriteDto Customer { get; set; }
 
-    public Bike ToBike()
+    public Request ToRequest()
     {
-        return new Bike
+        return new Request
         {
             TypeId = TypeId,
             BrandId = BrandId,
             ServiceId = ServiceId,
-            BikePackages = PackageId.Select(p => new BikePackage { PackageId = p }).ToArray(),
-            BikeOptions = OptionId.Select(o => new BikeOption { OptionId = o }).ToArray(),
-            BikeAnotherOptions = AnotherOptionId.Select(ao => new BikeAnotherOption { AnotherOptionId = ao }).ToArray(),
+            RequestPackages = PackageId.Select(p => new RequestPackage { PackageId = p }).ToArray(),
+            RequestOptions = OptionId.Select(o => new RequestOption { OptionId = o }).ToArray(),
+            RequestAnotherOptions = AnotherOptionId.Select(ao => new RequestAnotherOption { AnotherOptionId = ao }).ToArray(),
             Description = Description,
             Note = Note,
             Customer = Customer.ToCustomer()

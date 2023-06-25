@@ -8,5 +8,5 @@ public interface IServiceManager
     IPackageServices PackageServices { get; }
     IOptionServices OptionServices { get; }
     IAnotherOptionServices AnotherOptionServices { get; }
-    IBikeServices BikeServices { get; }
+    IRequestServices RequestServices { get; }
 } 

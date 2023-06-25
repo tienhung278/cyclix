@@ -13,7 +13,7 @@ public class OptionReadDto
         Name = option.Name;
     }
     
-    public OptionReadDto(BikeOption option)
+    public OptionReadDto(RequestOption option)
     {
         Id = option.Option.Id;
         Name = option.Option.Name;

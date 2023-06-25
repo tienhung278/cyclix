@@ -9,11 +9,11 @@ public class RepositoryManager : IRepositoryManager
     private readonly Lazy<IPackageRepository> _lazyPackageRepository;
     private readonly Lazy<IOptionRepository> _lazyOptionRepository;
     private readonly Lazy<IAnotherOptionRepository> _lazyAnotherOptionRepository;
-    private readonly Lazy<IBikePackageRepository> _lazyBikePackageRepository;
-    private readonly Lazy<IBikeOptionRepository> _lazyBikeOptionRepository;
-    private readonly Lazy<IBikeAnotherOptionRepository> _lazyBikeAnotherOptionRepository;
+    private readonly Lazy<IRequestPackageRepository> _lazyRequestPackageRepository;
+    private readonly Lazy<IRequestOptionRepository> _lazyRequestOptionRepository;
+    private readonly Lazy<IRequestAnotherOptionRepository> _lazyRequestAnotherOptionRepository;
     private readonly Lazy<ICustomerRepository> _lazyCustomerRepository;
-    private readonly Lazy<IBikeRepository> _lazyBikeRepository;
+    private readonly Lazy<IRequestRepository> _lazyRequestRepository;
     private readonly Lazy<IUnitOfWork> _lazyUnitOfWorkRepository;
 
     public ITypeRepository TypeRepository => _lazyTypeRepository.Value;
@@ -22,11 +22,11 @@ public class RepositoryManager : IRepositoryManager
     public IPackageRepository PackageRepository => _lazyPackageRepository.Value;
     public IOptionRepository OptionRepository => _lazyOptionRepository.Value;
     public IAnotherOptionRepository AnotherOptionRepository => _lazyAnotherOptionRepository.Value;
-    public IBikePackageRepository BikePackageRepository => _lazyBikePackageRepository.Value;
-    public IBikeOptionRepository BikeOptionRepository => _lazyBikeOptionRepository.Value;
-    public IBikeAnotherOptionRepository BikeAnotherOptionRepository => _lazyBikeAnotherOptionRepository.Value;
+    public IRequestPackageRepository RequestPackageRepository => _lazyRequestPackageRepository.Value;
+    public IRequestOptionRepository RequestOptionRepository => _lazyRequestOptionRepository.Value;
+    public IRequestAnotherOptionRepository RequestAnotherOptionRepository => _lazyRequestAnotherOptionRepository.Value;
     public ICustomerRepository CustomerRepository => _lazyCustomerRepository.Value;
-    public IBikeRepository BikeRepository => _lazyBikeRepository.Value;
+    public IRequestRepository RequestRepository => _lazyRequestRepository.Value;
     public IUnitOfWork UnitOfWork => _lazyUnitOfWorkRepository.Value;
 
     public RepositoryManager(RepositoryContext context)
@@ -38,11 +38,11 @@ public class RepositoryManager : IRepositoryManager
         _lazyPackageRepository = new Lazy<IPackageRepository>(() => new PackageRepository(context));
         _lazyOptionRepository = new Lazy<IOptionRepository>(() => new OptionRepository(context));
         _lazyAnotherOptionRepository = new Lazy<IAnotherOptionRepository>(() => new AnotherOptionRepository(context));
-        _lazyBikePackageRepository = new Lazy<IBikePackageRepository>(() => new BikePackageRepository(context));
-        _lazyBikeOptionRepository = new Lazy<IBikeOptionRepository>(() => new BikeOptionRepository(context));
-        _lazyBikeAnotherOptionRepository = new Lazy<IBikeAnotherOptionRepository>(() => new BikeAnotherOptionRepository(context));
+        _lazyRequestPackageRepository = new Lazy<IRequestPackageRepository>(() => new RequestPackageRepository(context));
+        _lazyRequestOptionRepository = new Lazy<IRequestOptionRepository>(() => new RequestOptionRepository(context));
+        _lazyRequestAnotherOptionRepository = new Lazy<IRequestAnotherOptionRepository>(() => new RequestAnotherOptionRepository(context));
         _lazyCustomerRepository = new Lazy<ICustomerRepository>(() => new CustomerRepository(context));
-        _lazyBikeRepository = new Lazy<IBikeRepository>(() => new BikeRepository(context));
+        _lazyRequestRepository = new Lazy<IRequestRepository>(() => new RequestRepository(context));
         _lazyUnitOfWorkRepository = new Lazy<IUnitOfWork>(() => new UnitOfWork(context));
     }
 }
