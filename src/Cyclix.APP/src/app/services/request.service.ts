@@ -13,11 +13,11 @@ export class RequestService {
 
   constructor(private http: HttpClient) { }
 
-  getBike(id: number): Observable<RequestRead> {
-    return this.http.get<RequestRead>(this.baseURL + "/requests/" + id);
+  getRequest(): Observable<RequestRead> {
+    return this.http.get<RequestRead>(this.baseURL + "/requests/latest");
   }
 
-  createBike(requestWrite: RequestWrite): Observable<any> {
+  createRequest(requestWrite: RequestWrite): Observable<any> {
     return this.http.post<any>(this.baseURL + "/requests", requestWrite, { headers: { "Content-Type": "application/json" }});
   }
 }

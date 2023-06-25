@@ -13,7 +13,6 @@ export class AppComponent implements OnInit, OnDestroy {
   isSaved = false;
   requestWrite: RequestWrite = {};
   subscriptions: Subscription[] = [];
-  currentRequestId: number = 0;
 
   constructor(private requestService: RequestService) {
   }
@@ -24,7 +23,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscriptions.push(
-      this.requestService.getBike(1).subscribe(
+      this.requestService.getRequest().subscribe(
         value => {
           this.requestWrite = {
             typeId: value.type?.id,
@@ -36,28 +35,26 @@ export class AppComponent implements OnInit, OnDestroy {
             description: value.description,
             note: value.note,
             customer: value.customer
-          }
-          this.currentRequestId = value.id!;
+          };
         }
       )
     );
   }
 
   submit(): void {
-    this.currentRequestId = this.currentRequestId + 1;
-    console.log(this.requestWrite);
     this.subscriptions.push(
-      this.requestService.createBike(this.requestWrite).subscribe(
-        value => this.isSaved = true
+      this.requestService.createRequest(this.requestWrite).subscribe(
+        value => {
+          this.isSaved = true;
+          this.reset();
+        }
       )
     );
-
-    this.reset();
   }
 
   load(): void {
     this.subscriptions.push(
-      this.requestService.getBike(this.currentRequestId).subscribe(
+      this.requestService.getRequest().subscribe(
         value => {
           this.requestWrite = {
             typeId: value.type?.id,
@@ -69,8 +66,8 @@ export class AppComponent implements OnInit, OnDestroy {
             description: value.description,
             note: value.note,
             customer: value.customer
-          }
-          this.currentRequestId = value.id!;
+          };
+          this.isSaved = false;
         }
       )
     );
@@ -78,6 +75,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private reset(): void {
     this.requestWrite = {
+      packageIds: [],
+      optionIds: [],
+      anotherOptionIds: [],
       customer: {}
     }
   }
