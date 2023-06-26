@@ -12,7 +12,7 @@
           [text]="option.name"
           [elementAttr]="{ class: 'text-color' }"
           [value]="optionIds?.includes(option.id)"
-          (valueChange)="optionValueChange(option.id)"
+          (valueChange)="optionValueChanged($event, option.id)"
         >
         </dx-check-box>
       </div>
@@ -26,7 +26,7 @@
           [text]="anotherOption.name"
           [elementAttr]="{ class: 'text-color' }"
           [value]="anotherOptionIds?.includes(anotherOption.id)"
-          (valueChange)="anotherOptionValueChange(anotherOption.id)"
+          (valueChange)="anotherOptionValueChanged($event, anotherOption.id)"
         >
         </dx-check-box>
       </div>

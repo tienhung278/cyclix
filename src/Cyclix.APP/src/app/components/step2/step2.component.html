@@ -24,7 +24,7 @@
                       [text]="package.name"
                       [elementAttr]="{ class: 'text-color' }"
                       [value]="packageIds?.includes(package.id)"
-                      (valueChange)="packageValueChange(package.id)"
+                      (valueChange)="packageValueChange($event, package.id)"
         >
         </dx-check-box>
       </div>

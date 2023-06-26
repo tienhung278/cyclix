@@ -25,6 +25,9 @@ export class Step3Component implements OnInit {
   options$: Observable<Option[]> = new Observable<Option[]>();
   anotherOptions$: Observable<AnotherOption[]> = new Observable<AnotherOption[]>();
 
+  selectedOptionIds: number[] = [];
+  selectedAnotherOptionIds: number[] = [];
+
   constructor(private optionService: OptionService,
               private anotherOptionService: AnotherOptionService) {
   }
@@ -34,25 +37,26 @@ export class Step3Component implements OnInit {
     this.anotherOptions$ = this.anotherOptionService.getAnotherOptions();
   }
 
-  optionValueChange(optionSelectedId: number): void {
-    const index = this.optionIds?.indexOf(optionSelectedId)!;
-    if (optionSelectedId && index != -1) {
-      this.optionIds?.splice(index, 1);
-    } else {
-      this.optionIds?.push(optionSelectedId);
+  optionValueChanged(event: any, optionSelectedId: number): void {
+    const index = this.selectedOptionIds?.indexOf(optionSelectedId)!;
+    if (event && index == -1) {
+      this.selectedOptionIds?.push(optionSelectedId);
+      this.selectedOptionIds.sort();
+    } else if (index != -1) {
+      this.selectedOptionIds?.splice(index, 1);
     }
-
-    this.onOptionValueChange.emit(this.optionIds);
+    this.onOptionValueChange.emit(this.selectedOptionIds);
   }
 
-  anotherOptionValueChange(anotherOptionSelectedId: number): void {
-    const index = this.anotherOptionIds?.indexOf(anotherOptionSelectedId)!;
-    if (anotherOptionSelectedId && index != -1) {
-      this.anotherOptionIds?.splice(index, 1);
-    } else {
-      this.anotherOptionIds?.push(anotherOptionSelectedId);
+  anotherOptionValueChanged(event: any, anotherOptionSelectedId: number): void {
+    const index = this.selectedAnotherOptionIds?.indexOf(anotherOptionSelectedId)!;
+    if (event && index == -1) {
+      this.selectedAnotherOptionIds?.push(anotherOptionSelectedId);
+      this.selectedAnotherOptionIds.sort();
+    } else if (index != -1) {
+      this.selectedAnotherOptionIds?.splice(index, 1);
     }
 
-    this.onAnotherOptionValueChange.emit(this.anotherOptionIds);
+    this.onAnotherOptionValueChange.emit(this.selectedAnotherOptionIds);
   }
 }

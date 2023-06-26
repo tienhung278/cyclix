@@ -40,13 +40,13 @@ export class Step2Component implements OnInit {
     this.onServiceValueChange.emit(serviceSelectedId);
   }
 
-  packageValueChange(packageSelectedId: number): void {
+  packageValueChange(event: any, packageSelectedId: number): void {
     const index = this.selectedPackageIds?.indexOf(packageSelectedId)!;
-    if (packageSelectedId && index != -1) {
-      this.selectedPackageIds?.splice(index, 1);
-    } else {
+    if (event && index == -1) {
       this.selectedPackageIds?.push(packageSelectedId);
       this.selectedPackageIds.sort();
+    } else if (index != -1) {
+      this.selectedPackageIds?.splice(index, 1);
     }
     this.onPackageValueChange.emit(this.selectedPackageIds);
   }
