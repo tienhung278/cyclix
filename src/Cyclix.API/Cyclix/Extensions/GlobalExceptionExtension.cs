@@ -1,4 +1,4 @@
-using Cyclix.Exception;
+using Cyclix.Middlewares;
 
 namespace Cyclix.Extensions;
 

@@ -1,7 +1,7 @@
 using System.Net;
 using System.Text.Json;
 
-namespace Cyclix.Exception;
+namespace Cyclix.Middlewares;
 
 public class GlobalExceptionMiddleware
 {
