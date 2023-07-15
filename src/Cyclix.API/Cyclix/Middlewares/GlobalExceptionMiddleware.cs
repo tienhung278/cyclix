@@ -3,16 +3,16 @@ using System.Text.Json;
 
 namespace Cyclix.Exception;
 
-public class GlobalExceptionMiddle
+public class GlobalExceptionMiddleware
 {
     private readonly RequestDelegate _next;
 
-    public GlobalExceptionMiddle(RequestDelegate next)
+    public GlobalExceptionMiddleware(RequestDelegate next)
     {
         _next = next;
     }
     
-    public async Task Invoke(HttpContext context, ILogger<GlobalExceptionMiddle> logger)
+    public async Task InvokeAsync(HttpContext context, ILogger<GlobalExceptionMiddleware> logger)
     {
         try
         {
